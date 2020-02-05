@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-success pull-right add_more">Add more</button>
+            </div>
+        </div>
+        <div>
+            <form id="record" style="border:1px solid silver; padding: 10px; margin: 20px;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Type</b></label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Checkbox-group</option>
+                                <option>Radio-group</option>
+                                <option>Select Text area</option>
+                                <option>Text</option>
+                                <option>Number</option>
+                                <option>Date</option>
+                                <option>Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label><b>Subtype</b></label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Text</option>
+                                <option>Number</option>
+                                <option>Decimal</option>
+                                <option>Phone</option>
+                                <option>Rext area</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label><b>Max length</b></label>
+                        <input type="text" class="form-control" id="validation" name="max">
+                        <div id ="error_max" class="error"></div> 
+                    </div>
+                    <div class="col-md-3 ">
+                        <label><b>Serial number</b></label>
+                        <input type="text" class="form-control" id="validationC" name="serial">
+                        <div id ="error_serial" class="error"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class = "col-md-5">
+                        <label><b>Label</b></label>
+                        <textarea class="form-control" rows="3" id="comment" name="text"></textarea>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <label><b>Frequency field</b></label>
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <input type="radio" name="radio1" value="yes">
+                                    <label>
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="radio1" value="no">
+                                    <label>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-md-2">
+                        <div class="row">
+                            <label><b>Required</b></label>
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <input type="radio"  name="exampleRadios" value="ro">
+                                    <label>
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="exampleRadios" value="so">
+                                    <label>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <label><b>Display question number</b></label>
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <input type="radio" name="exampleRadio" value="exampleRadios1"  checked>
+                                    <label>
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="exampleRadio" value="exampleRadios1"  checked>
+                                    <label>
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"><div class="action_btn"></div></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info" style="margin-left:150px;">Submit</button>
+</body>
+<script>
+    $(document).ready(function(){
+        var cloneIndex = $("#record").length;
+        $('.add_more').click(function(){
+           $('.container').append($('#record').clone(true)).find('.action_btn').not(':first').html('<button class="btn btn-danger pull-right">Remove</button>');
+
+
+           cloneIndex++;
+            console.log(cloneIndex);
+            
+
+       })
+            
+
+        $('.container').on('click', '.action_btn', function(){
+            $(this).closest('#record').remove();
+        })
+
+       
+            for(cloneIndex = 1;cloneIndex <= cloneIndex.length;cloneIndex++)
+            {
+
+                $('#record').on('submit',function(event){
+                event.preventDefault(event);
+                $('.error').empty();        
+                var maxlength = $('#validation').val();
+                var serialno = $('#validationC').val();
+                var error = false;
+                    // for name validation
+                    if(maxlength >= 10){
+                        document.getElementById('error_max').innerHTML = "The number should be less than 10";
+                        error = true;
+                    }
+
+                    if(serialno >= 10){
+                        document.getElementById('error_serial').innerHTML = "The number should be less than 10";
+                        error = true;
+                    }
+                });
+            }
+          
+            });
+    </script>
+</html>
